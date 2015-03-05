@@ -8,6 +8,6 @@
 
 import SpriteKit
 
-class GameGridNode: SKNode {
+class GameCellNode: SKNode {
     
 }

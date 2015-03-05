@@ -30,7 +30,7 @@
     * TitleMenuNode : SKNode // タイトルメニュー
 * GameScene : GameScene // ゲーム
     * GameMainNode : SKNode // マインスイーパ本体
-        * GameGridNode : SKNode // セル
+        * GameCellNode : SKNode // セル
         * GameModeNode : SKNode // モード（通常，旗）選択用
     * GameMenuNode : SKNode // ゲームメニュー
     * GameOverNode : SKNode // ゲームオーバー

@@ -15,7 +15,7 @@
 		38DBBAE11AA7C4530052603B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38DBBADF1AA7C4530052603B /* LaunchScreen.xib */; };
 		38DBBAED1AA7C4540052603B /* minesweeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBBAEC1AA7C4540052603B /* minesweeperTests.swift */; };
 		38DBBAFB1AA855000052603B /* GameMainNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBBAFA1AA855000052603B /* GameMainNode.swift */; };
-		38DBBAFD1AA855710052603B /* GameGridNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBBAFC1AA855710052603B /* GameGridNode.swift */; };
+		38DBBAFD1AA855710052603B /* GameCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBBAFC1AA855710052603B /* GameCellNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		38DBBAEB1AA7C4540052603B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DBBAEC1AA7C4540052603B /* minesweeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = minesweeperTests.swift; sourceTree = "<group>"; };
 		38DBBAFA1AA855000052603B /* GameMainNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMainNode.swift; sourceTree = "<group>"; };
-		38DBBAFC1AA855710052603B /* GameGridNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameGridNode.swift; sourceTree = "<group>"; };
+		38DBBAFC1AA855710052603B /* GameCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCellNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 				38DBBAD61AA7C4530052603B /* GameScene.swift */,
 				38DBBAD81AA7C4530052603B /* GameViewController.swift */,
 				38DBBAFA1AA855000052603B /* GameMainNode.swift */,
-				38DBBAFC1AA855710052603B /* GameGridNode.swift */,
+				38DBBAFC1AA855710052603B /* GameCellNode.swift */,
 				38DBBADA1AA7C4530052603B /* Main.storyboard */,
 				38DBBADD1AA7C4530052603B /* Images.xcassets */,
 				38DBBADF1AA7C4530052603B /* LaunchScreen.xib */,
@@ -224,7 +224,7 @@
 				38DBBAD71AA7C4530052603B /* GameScene.swift in Sources */,
 				38DBBAD91AA7C4530052603B /* GameViewController.swift in Sources */,
 				38DBBAFB1AA855000052603B /* GameMainNode.swift in Sources */,
-				38DBBAFD1AA855710052603B /* GameGridNode.swift in Sources */,
+				38DBBAFD1AA855710052603B /* GameCellNode.swift in Sources */,
 				38DBBAD31AA7C4530052603B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
