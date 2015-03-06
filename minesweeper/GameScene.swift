@@ -24,7 +24,7 @@ class GameScene: SKScene, MyButtonDelegate {
         
         // mode change
         let button = MyButton(fontNamed: "Chalkduster")
-        button.text = "Mode Change"
+        button.text = "[Mode Change]"
         button.fontSize = 25
         button.position = CGPointMake(CGRectGetMidX(self.frame),50)
         button.name = "mode"

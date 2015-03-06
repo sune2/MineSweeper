@@ -15,13 +15,14 @@ protocol MyButtonDelegate {
 class MyButton: SKLabelNode {
     var _highlighted: Bool = false
     var delegate: MyButtonDelegate!
+    var baseSize: CGFloat = 25
     var highlighted: Bool {
         get {
             return _highlighted
         }
         set(val) {
             _highlighted = val
-            self.fontSize = _highlighted ? 28 : 25;
+            self.fontSize = _highlighted ? baseSize * CGFloat(1.1) : baseSize;
         }
     }
     override init(fontNamed fontName: String!) {
