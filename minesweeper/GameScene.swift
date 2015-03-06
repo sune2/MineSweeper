@@ -17,7 +17,8 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
-        let cell = GameMainNode(texture:nil, color:UIColor.whiteColor() ,size: CGSize(width: 300, height: 300), R: 5, C: 5)
+        let cell = GameMainNode(texture:nil, color:UIColor.whiteColor(),
+            size: CGSize(width: 300, height: 300), R: 5, C: 5, B: 5)
         cell.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
         self.addChild(cell)
         

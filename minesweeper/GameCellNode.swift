@@ -55,7 +55,7 @@ class GameCellNode: SKSpriteNode {
         case .Open:
             if status == .Unopened {
                 status = .Opened
-                if num >= -1 {
+                if num >= 0 {
                     delegate.opened(self)
                 } else {
                     delegate.bombed(self)
