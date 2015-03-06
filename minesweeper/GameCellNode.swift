@@ -32,7 +32,8 @@ class GameCellNode: SKSpriteNode {
             self.draw()
         }
     }
-    var row: Int = 0, col: Int = 0, num: Int = 0
+    var pos: Pos = Pos(y:0, x:0)
+    var num: Int = 0
     var label: SKLabelNode = SKLabelNode(fontNamed: "Chalkduster")
     override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -42,8 +43,6 @@ class GameCellNode: SKSpriteNode {
         label.verticalAlignmentMode = .Center
         label.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         self.addChild(label)
-        
-        self.addChild(SKSpriteNode(texture: nil, color: UIColor.brownColor(), size: CGSizeMake(10, 10)))
     }
     
     required init?(coder aDecoder: NSCoder) {

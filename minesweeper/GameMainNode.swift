@@ -18,6 +18,14 @@ extension Array {
     }
 }
 
+class Pos {
+    let y, x: Int
+    init(y: Int, x: Int) {
+        self.y = y
+        self.x = x
+    }
+}
+
 class GameMainNode: SKSpriteNode, GameCellProtocol {
     let R: Int = 1
     let C: Int = 1
@@ -40,8 +48,7 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
                 let y = CGRectGetMinY(self.frame) + edgeSize / 2 + h / 2 + CGFloat(i) * h
                 let x = CGRectGetMinX(self.frame) + edgeSize / 2 + w / 2 + CGFloat(j) * w
                 cell.position = CGPoint(x: x, y: y)
-                cell.row = i
-                cell.col = j
+                cell.pos = Pos(y: i, x: j)
                 cell.delegate = self
                 self.addChild(cell)
                 row.append(cell)
@@ -57,16 +64,16 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
     
     func createGame() {
         // generate bombs
-        var cellids: [[Int]] = []
+        var cellids: [Pos] = []
         for i in 0..<R {
             for j in 0..<C {
-                cellids.append([i,j])
+                cellids.append(Pos(y: i, x: j))
             }
         }
         cellids.shuffle()
         for i in 0..<B {
-            let y = cellids[i][0]
-            let x = cellids[i][1]
+            let y = cellids[i].y
+            let x = cellids[i].x
             cells[y][x].num = -1
         }
         // calculate num of each cells
@@ -91,12 +98,43 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
         }
         
     }
-    
+
     func bombed(cell: GameCellNode) {
-        NSLog("bombed \(cell.status), \(cell.row), \(cell.col)")
+        NSLog("bombed \(cell.status), \(cell.pos.y), \(cell.pos.x)")
     }
     func opened(cell: GameCellNode) {
-        NSLog("opened \(cell.status), \(cell.row), \(cell.col)")
+        NSLog("opened \(cell.status), \(cell.pos.y), \(cell.pos.x)")
+        // 自動で開ける所を探索
+        var Q: [Pos] = []
+        var visited: [[Bool]] = [[Bool]](count: R, repeatedValue: [Bool](count: C, repeatedValue: false))
+        visited[cell.pos.y][cell.pos.x] = true
+        Q.append(cell.pos)
+        while Q.count != 0 {
+            let y = Q.last!.y
+            let x = Q.last!.x
+            Q.removeLast()
+            cells[y][x].status = .Opened // 開く
+            if cells[y][x].num != 0 {
+                continue
+            }
+            for dy in -1...1 {
+                for dx in -1...1 {
+                    let yy = y + dy
+                    let xx = x + dx
+                    if yy < 0 || yy >= R || xx < 0 || xx >= C {
+                        continue
+                    }
+                    if visited[yy][xx] {
+                        continue
+                    }
+                    let nc = cells[yy][xx]
+                    if nc.status == .Unopened {
+                        visited[yy][xx] = true
+                        Q.append(nc.pos)
+                    }
+                }
+            }
+        }
     }
     func getMode() -> GameMode {
         return self.mode
