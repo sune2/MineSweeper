@@ -99,11 +99,7 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
         
     }
 
-    func bombed(cell: GameCellNode) {
-        NSLog("bombed \(cell.status), \(cell.pos.y), \(cell.pos.x)")
-    }
-    func opened(cell: GameCellNode) {
-        NSLog("opened \(cell.status), \(cell.pos.y), \(cell.pos.x)")
+    func expand(cell: GameCellNode) {
         // 自動で開ける所を探索
         var Q: [Pos] = []
         var visited: [[Bool]] = [[Bool]](count: R, repeatedValue: [Bool](count: C, repeatedValue: false))
@@ -134,6 +130,29 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
                     }
                 }
             }
+        }
+    }
+    
+    func isCleared() -> Bool {
+        var cnt = 0
+        for y in 0..<R {
+            for x in 0..<C {
+                if cells[y][x].status == .Opened {
+                    cnt += 1
+                }
+            }
+        }
+        return cnt == R*C - B
+    }
+    
+    func bombed(cell: GameCellNode) {
+        NSLog("bombed \(cell.status), \(cell.pos.y), \(cell.pos.x)")
+    }
+    func opened(cell: GameCellNode) {
+        NSLog("opened \(cell.status), \(cell.pos.y), \(cell.pos.x)")
+        self.expand(cell)
+        if self.isCleared() {
+            NSLog("clear!!!")
         }
     }
     func getMode() -> GameMode {
