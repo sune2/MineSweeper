@@ -105,8 +105,8 @@ class GameScene: SKScene, MyButtonDelegate, GameMainProtocol {
         node.zPosition = 2
         self.addChild(node)
         
-        var label = self.getLabel("GameOver")
-        label.fontColor = UIColor.redColor()
+        var label = self.getLabel(text)
+        label.fontColor = color
         node.addChild(label)
         
         var retryButton = MyButton(fontNamed: "Chalkduster")
@@ -125,11 +125,16 @@ class GameScene: SKScene, MyButtonDelegate, GameMainProtocol {
     }
 
     func gameover() {
+        for row in gameMain.cells {
+            for cell in row {
+                cell.status = GameCellStatus.Opened
+            }
+        }
         self.finished("GameOver", color: UIColor.redColor())
     }
     
     func cleared() {
-        self.finished("Cleared!!", color: UIColor.greenColor())
+        self.finished("Clear!!", color: UIColor.greenColor())
     }
     
     
