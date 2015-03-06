@@ -39,7 +39,6 @@ class GameCellNode: SKSpriteNode {
         super.init(texture: texture, color: color, size: size)
         self.userInteractionEnabled = true
         // init label
-        label.fontSize = 25
         label.verticalAlignmentMode = .Center
         label.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
         self.addChild(label)

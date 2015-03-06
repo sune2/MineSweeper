@@ -22,34 +22,13 @@ class GameScene: SKScene {
         cell.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
         self.addChild(cell)
         
-//        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-//        myLabel.text = "Hello, World!";
-//        myLabel.fontSize = 65;
-//        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-//        
-//        self.addChild(myLabel)
+        // button
+        let button = MyButton(fontNamed: "Chalkduster")
+        button.text = "hfdksljfkdsjfdlskjfkdlsj"
+        button.fontSize = 25
+        button.position = CGPointMake(10,50)
+        self.addChild(button)
     }
-    
-//    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-//        /* Called when a touch begins */
-//        
-//        for touch: AnyObject in touches {
-//            let location = touch.locationInNode(self)
-//            
-//            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-//            
-//            sprite.xScale = 0.5
-//            sprite.yScale = 0.5
-//            sprite.position = location
-//            
-//            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-//            
-//            sprite.runAction(SKAction.repeatActionForever(action))
-//            
-//            self.addChild(sprite)
-//        }
-//    }
-//   
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
