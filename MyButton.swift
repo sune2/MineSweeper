@@ -27,6 +27,7 @@ class MyButton: SKLabelNode {
     }
     override init(fontNamed fontName: String!) {
         super.init(fontNamed: fontName)
+        self.fontSize = baseSize
         self.userInteractionEnabled = true
     }
     override init() {

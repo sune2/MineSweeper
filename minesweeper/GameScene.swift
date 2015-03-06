@@ -13,7 +13,7 @@ enum GameMode {
     case Flag
 }
 
-class GameScene: SKScene, MyButtonDelegate {
+class GameScene: SKScene, MyButtonDelegate, GameMainProtocol {
     var R: Int = 1
     var C: Int = 1
     var B: Int = 1
@@ -39,6 +39,7 @@ class GameScene: SKScene, MyButtonDelegate {
         gameMain = GameMainNode(texture:nil, color:UIColor.whiteColor(),
             size: CGSize(width: 300, height: 300), R: self.R, C: self.C, B: self.B)
         gameMain.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        gameMain.delegate = self
         self.addChild(gameMain)
         
         // mode change button
@@ -97,6 +98,41 @@ class GameScene: SKScene, MyButtonDelegate {
             modeButton.text = "[Flag Mode]"
         }
     }
+    
+    func finished(text: String, color: UIColor) {
+        let node = SKSpriteNode(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.7), size: self.frame.size)
+        node.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
+        node.zPosition = 2
+        self.addChild(node)
+        
+        var label = self.getLabel("GameOver")
+        label.fontColor = UIColor.redColor()
+        node.addChild(label)
+        
+        var retryButton = MyButton(fontNamed: "Chalkduster")
+        retryButton.text = "[Retry]"
+        retryButton.name = "retry"
+        retryButton.position = CGPoint(x: 0, y: -80)
+        retryButton.delegate = self
+        node.addChild(retryButton)
+    }
+
+    func getLabel(text: String) -> SKLabelNode {
+        var label = SKLabelNode(fontNamed: "Chalkduster")
+        label.fontSize = 60
+        label.text = text
+        return label
+    }
+
+    func gameover() {
+        self.finished("GameOver", color: UIColor.redColor())
+    }
+    
+    func cleared() {
+        self.finished("Cleared!!", color: UIColor.greenColor())
+    }
+    
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }

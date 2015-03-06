@@ -26,6 +26,11 @@ class Pos {
     }
 }
 
+protocol GameMainProtocol {
+    func cleared()
+    func gameover()
+}
+
 class GameMainNode: SKSpriteNode, GameCellProtocol {
     let R: Int = 1
     let C: Int = 1
@@ -38,6 +43,7 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
             // self.changeMode()
         }
     }
+    var delegate: GameMainProtocol!
     var cells: [[GameCellNode]] = []
     init(texture: SKTexture!, color: UIColor!, size: CGSize, R: Int, C: Int, B: Int) {
         self.R = R
@@ -153,12 +159,14 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
     }
     
     func bombed(cell: GameCellNode) {
+        delegate.gameover()
         NSLog("bombed \(cell.status), \(cell.pos.y), \(cell.pos.x)")
     }
     func opened(cell: GameCellNode) {
         NSLog("opened \(cell.status), \(cell.pos.y), \(cell.pos.x)")
         self.expand(cell)
         if self.isCleared() {
+            delegate.cleared()
             NSLog("clear!!!")
         }
     }
