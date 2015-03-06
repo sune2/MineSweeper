@@ -30,7 +30,14 @@ class GameMainNode: SKSpriteNode, GameCellProtocol {
     let R: Int = 1
     let C: Int = 1
     let B: Int = 1
-    let mode: GameMode = .Open
+    var _mode: GameMode = .Open
+    var mode: GameMode {
+        get { return _mode }
+        set(val) {
+            _mode = val
+            // self.changeMode()
+        }
+    }
     var cells: [[GameCellNode]] = []
     init(texture: SKTexture!, color: UIColor!, size: CGSize, R: Int, C: Int, B: Int) {
         self.R = R
