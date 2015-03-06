@@ -13,7 +13,7 @@ enum GameMode {
     case Flag
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, MyButtonDelegate {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
@@ -22,12 +22,21 @@ class GameScene: SKScene {
         cell.position = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMidY(self.frame))
         self.addChild(cell)
         
-        // button
+        // mode change
         let button = MyButton(fontNamed: "Chalkduster")
-        button.text = "hfdksljfkdsjfdlskjfkdlsj"
+        button.text = "Mode Change"
         button.fontSize = 25
-        button.position = CGPointMake(10,50)
+        button.position = CGPointMake(CGRectGetMidX(self.frame),50)
+        button.name = "mode"
+        button.delegate = self
         self.addChild(button)
+        
+        
+    }
+    func myButtonPushed(button: MyButton) {
+        if button.name == "mode" {
+            NSLog("mode changed")
+        }
     }
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

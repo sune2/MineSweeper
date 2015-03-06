@@ -8,8 +8,13 @@
 
 import SpriteKit
 
+protocol MyButtonDelegate {
+    func myButtonPushed(button: MyButton)
+}
+
 class MyButton: SKLabelNode {
     var _highlighted: Bool = false
+    var delegate: MyButtonDelegate!
     var highlighted: Bool {
         get {
             return _highlighted
@@ -45,7 +50,7 @@ class MyButton: SKLabelNode {
             }
         }
         if pushed {
-            NSLog("button pushed")
+            delegate.myButtonPushed(self)
         }
     }
 }
